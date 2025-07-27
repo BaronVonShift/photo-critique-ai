@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Photography-inspired dark theme */
+    --background: 220 26% 7%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 20% 10%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 210 20% 95%;
+
+    /* Red primary inspired by Anymus Vergo™ branding */
+    --primary: 0 84% 60%;
+    --primary-foreground: 220 26% 7%;
+    --primary-glow: 0 90% 70%;
+
+    /* Rich purple secondary for creative elements */
+    --secondary: 260 45% 25%;
+    --secondary-foreground: 210 20% 95%;
+
+    /* Subtle backgrounds */
+    --muted: 220 20% 15%;
+    --muted-foreground: 210 10% 70%;
+
+    /* Red accent for call-to-actions */
+    --accent: 0 84% 60%;
+    --accent-foreground: 220 26% 7%;
+    --accent-glow: 0 90% 70%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 15%;
+    --ring: 225 65% 55%;
+
+    --radius: 0.5rem;
+
+    /* Anymus Vergo™ inspired gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-sunset: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 90% 70%), hsl(0 80% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(220 25% 12%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    
+    /* Professional shadows */
+    --shadow-elegant: 0 25px 50px -12px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+    --shadow-accent: 0 10px 30px -10px hsl(var(--accent) / 0.4);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Hero button with gradient background */
+  .btn-hero {
+    @apply relative overflow-hidden rounded-lg px-8 py-4 font-semibold transition-all duration-300;
+    background: var(--gradient-accent);
+    color: hsl(var(--accent-foreground));
+    box-shadow: var(--shadow-accent);
+  }
+  
+  .btn-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent), var(--shadow-glow);
+  }
+  
+  /* Professional card with gradient */
+  .card-gradient {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  /* Upload zone styling */
+  .upload-zone {
+    @apply relative overflow-hidden rounded-xl border-2 border-dashed border-primary/30 bg-card/50 transition-all duration-300;
+    background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(220 25% 8%) 100%);
+  }
+  
+  .upload-zone:hover {
+    @apply border-primary/60;
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  /* Photography-themed animations */
+  .camera-shake {
+    animation: cameraShake 0.6s ease-in-out;
+  }
+  
+  @keyframes cameraShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+  }
+
+  /* Custom animations for SaaS homepage */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out;
+  }
+
+  .animate-gradient {
+    animation: gradientShift 3s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Scroll animations */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+
+  .scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+}
